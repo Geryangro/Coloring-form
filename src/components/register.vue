@@ -1,0 +1,172 @@
+<template>
+  <div>
+    <b-col class="register">
+      <b-row>
+        <b-col md="12" class="upload_picture">
+          <h2>Daftarkan anak Anda dengan <br> 
+            mengisi form dibawah ini!
+          </h2>
+          <div v-if="!form.image">
+            <div class="circle" @click="pictureClick($refs.inputImage)">
+              <b-img class="upload" :src="require('../assets/image/avatar.png')" fluid/>
+              <p>upload</p>        
+            </div>
+          </div>
+          <div v-else>
+            <div class="circle">
+              <b-img class="upload-ava" :src="form.image" fluid/>
+            </div>
+          </div>
+          <b-form-file ref="inputImage" v-model="form.image" @change="imageHandler" :state="Boolean(file)" placeholder="Choose a file..."  style="display: none;" ></b-form-file>
+          <h2>
+            Upload foto anak anda <br>
+            MAX : 1 MB
+          </h2>
+        </b-col>
+      </b-row>
+    </b-col>
+    <b-col md="12" class="background_grey">
+      <b-row>
+        <b-col md="8" offset-md="2">
+          <b-form-group id="exampleInputGroup1" label-for="exampleInput1">
+          <P class="text-left">Nama Anak Lengkap :</P>
+          <b-form-input class="inputText" id="exampleInput1" type="text" v-model="form.name" required>
+          </b-form-input>
+          <P class="text-left">Tanggal Lahir Anak :</P>
+          <b-form-input class="inputText" id="exampleInput1" type="date" v-model="form.date" required>
+          </b-form-input>
+          <P class="text-left">Kategori :</P>
+          <b-form-group class="text-left">
+            <b-form-radio-group v-model="selected"
+                          :options="options"
+                          plain
+                          name="plainInline" />
+          </b-form-group>
+          <P class="text-left">Email :</P>
+          <b-form-input class="inputText" id="exampleInput1" type="text" v-model="form.email" required>
+          </b-form-input>
+          <P class="text-left">Alamat :</P>
+          <b-form-input class="inputText" size="lg" id="exampleInput1" type="text" v-model="form.address" required>
+          </b-form-input>
+          <b-button class="dftr">
+            DAFTAR SEKARANG
+          </b-button>
+         </b-form-group>
+        </b-col>
+      </b-row>
+    </b-col>
+    <footbar />
+  </div>
+</template>
+
+<script>
+import footbar from '@/components/footbar.vue'
+
+export default {
+  name: 'register',
+  components: {
+    footbar
+  },
+  data () {
+    return {
+      file: null,
+      msg: 'Welcome to Your Vue.js App',
+      form: {
+        image: '',
+        name: '',
+        date: '',
+        email: '',
+        address: '',
+      },
+      selected: 'first',
+      options: [
+        { text: '5 - 7 Tahun', value: 'first' },
+        { text: '8 - 10 Tahun', value: 'second' }
+      ]
+    }
+  },
+  methods: {
+    imageHandler(e) {
+        var files = e.target.files || e.dataTransfer.files;
+        if (!files.length)
+            return;
+        this.createImage(files[0]);
+    },
+    createImage(file) {
+        var reader = new FileReader();
+        var vm = this;
+        reader.onload = (e) => {
+          console.log("reader")
+          console.log(e.target.result)
+            vm.$set(vm.form, 'image', e.target.result);
+            console.log(vm.form.image);
+        };
+        reader.readAsDataURL(file);
+
+    },
+    pictureClick(target){
+      target.$el.children[0].click();
+    },
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+  p {
+    margin: 0px;
+  }
+  .text-left {
+    text-align: left;
+    font-size: 20px;
+  }
+  .register {
+    background-image: url('../assets/image/background_form.jpg');
+    background-size: 100% 100%;
+    height: 660px;
+    padding: 20px;
+  }
+  .upload_picture {
+    margin-top: 5%;
+  }
+  .upload {
+    margin: 30px 0px 20px;
+    width: 100px;
+    height: 100px;
+  }
+  .upload-ava {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+  }
+  .circle {
+    border: 4px dashed #888;
+    border-radius: 50%;
+    margin: 40px auto;
+    padding: 10px;
+    width: 230px;
+    height: 230px;
+  }
+  .background_grey {
+    background-color: #F2F2F4;
+    padding: 20px;
+  }
+  .inputText {
+    margin: 0px 0px 20px;
+    width: 100%;
+    border-radius: 10px;
+    -webkit-box-shadow: 4px 4px 6px 0px rgba(184,184,184,1);
+    -moz-box-shadow: 4px 4px 6px 0px rgba(184,184,184,1);
+    box-shadow: 4px 4px 6px 0px rgba(184,184,184,1);
+  }
+  .dftr {
+    background-color: #F4AF15;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    width: 400px;
+    font-size: 26px;
+    margin-top: 20px;
+    border-radius: 15px;
+  }
+</style>
