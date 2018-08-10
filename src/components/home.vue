@@ -57,7 +57,7 @@ export default {
     padding: 20px;
 }
 .pendaftaraan {
-    background-image: url('../assets/image/pendaftaraan.png');
+    background-image: url('../assets/image/daftar.png');
     background-size: 100% 100%;
     height: 586px;
     padding: 20px;
@@ -104,9 +104,9 @@ export default {
         padding: 20px;
     }
     .pendaftaraan {
-        background-image: url('../assets/mobile/banner4.png');
+        background-image: url('../assets/mobile/banner44.png');
         background-size: 100% 100%;
-        height: 440px;
+        height: 500px;
         padding: 20px;
         margin-top: -20px;
     }

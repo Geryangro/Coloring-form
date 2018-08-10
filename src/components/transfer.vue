@@ -90,7 +90,7 @@ export default {
     background-image: url('../assets/image/transfer.jpg');
     background-size: 100% 100%;
     padding: 60px 20px 100px;
-    height: 1250px;
+    height: 1450px;
 }
 .trans {
     margin-top: 100px;
@@ -136,7 +136,9 @@ img.bank {
 @media screen and (max-width:760px) {
     #transfer {
         padding: 20px 30px 120px;
-        height: 100%;
+        background-image: url('../assets/image/konfirmasi-pembayaran.jpg');
+        background-size: 100% 100%;
+        height: 1200px;
     }
     .trans p {
         font-size: 16px;

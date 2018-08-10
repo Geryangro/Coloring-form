@@ -8,8 +8,11 @@
           </h2>
           <div v-if="!form.image">
             <div class="circle" @click="pictureClick($refs.inputImage)">
-              <b-img class="upload" :src="require('../assets/image/avatar.png')" fluid/>
-              <p>upload</p>        
+              <div class="box-circle">
+                <b-img class="upload" :src="require('../assets/image/avatar.png')" fluid/>
+                <p class="upload-text">UPLOAD DISINI</p>
+                <p v-if="!form.image && submit" class="image-error">Foto Tidak Ada / Error</p>
+              </div>      
             </div>
           </div>
           <div v-else>
@@ -62,6 +65,21 @@
             DAFTAR SEKARANG
           </b-button>
          </b-form-group>
+         <div v-if="showModal" class="loading"  style="background: rgba(0, 0, 0, 0.7);"> 
+           <div class="loading-test">
+            <div class="lds-roller">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            <P class="white">TUNGGU SEBENTAR <br> YA AYAH/BUNDA</P>
+           </div>
+         </div>
         </b-col>
       </b-row>
     </b-col>
@@ -91,6 +109,8 @@ export default {
         parent_phone: '',
         category: '',
       },
+      showModal: false,
+      submit: false,
       selected: 'first',
       options: [
         { text: '5 - 7 Tahun', value: 'first' },
@@ -126,10 +146,10 @@ export default {
       target.$el.children[0].click();
     },
     submitForm: function() {
-      console.log('test')
         var self = this;
+        self.submit = true;
         var form = this.form;
-        console.log(form);
+        self.showModal = true;
         axios.post('https://endpoint.lomba.afrakids.com/participant/register',{image:form.image, name:form.name, birth_date:form.date,
         parent_name:form.parent_name, parent_email:form.email, parent_phone:form.parent_phone, parent_address:form.address})
         .then(function (response){
@@ -148,6 +168,9 @@ export default {
           return 1
       else 
           return 2     
+    },
+    validation: function(){
+      
     }
   }
 }
@@ -157,6 +180,10 @@ export default {
 <style scoped>
   p {
     margin: 0px;
+  }
+  .white {
+    color: #888;
+    margin-top: 20px;
   }
   .text-left {
     text-align: left;
@@ -172,9 +199,12 @@ export default {
     margin-top: 5%;
   }
   .upload {
-    margin: 30px 0px 20px;
+    margin: 30px 0px 10px;
     width: 100px;
     height: 100px;
+  }
+  .box-circle {
+    padding: 10px;
   }
   .upload-ava {
     border-radius: 50%;
@@ -201,6 +231,9 @@ export default {
     -moz-box-shadow: 4px 4px 6px 0px rgba(184,184,184,1);
     box-shadow: 4px 4px 6px 0px rgba(184,184,184,1);
   }
+  .upload-text {
+    font-size: 20px;
+  }
   .dftr {
     background-color: #F4AF15;
     color: #ffffff;
@@ -211,6 +244,110 @@ export default {
     margin-top: 20px;
     border-radius: 15px;
   }
+  .loading {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: transform 0.5s ease-in-out;
+  }
+  .loading-test {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+  }
+  .lds-roller {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.lds-roller div {
+  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  transform-origin: 32px 32px;
+}
+.lds-roller div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #888;
+  margin: -3px 0 0 -3px;
+}
+.lds-roller div:nth-child(1) {
+  animation-delay: -0.036s;
+}
+.lds-roller div:nth-child(1):after {
+  top: 50px;
+  left: 50px;
+}
+.lds-roller div:nth-child(2) {
+  animation-delay: -0.072s;
+}
+.lds-roller div:nth-child(2):after {
+  top: 54px;
+  left: 45px;
+}
+.lds-roller div:nth-child(3) {
+  animation-delay: -0.108s;
+}
+.lds-roller div:nth-child(3):after {
+  top: 57px;
+  left: 39px;
+}
+.lds-roller div:nth-child(4) {
+  animation-delay: -0.144s;
+}
+.lds-roller div:nth-child(4):after {
+  top: 58px;
+  left: 32px;
+}
+.lds-roller div:nth-child(5) {
+  animation-delay: -0.18s;
+}
+.lds-roller div:nth-child(5):after {
+  top: 57px;
+  left: 25px;
+}
+.lds-roller div:nth-child(6) {
+  animation-delay: -0.216s;
+}
+.lds-roller div:nth-child(6):after {
+  top: 54px;
+  left: 19px;
+}
+.lds-roller div:nth-child(7) {
+  animation-delay: -0.252s;
+}
+.lds-roller div:nth-child(7):after {
+  top: 50px;
+  left: 14px;
+}
+.lds-roller div:nth-child(8) {
+  animation-delay: -0.288s;
+}
+.lds-roller div:nth-child(8):after {
+  top: 45px;
+  left: 10px;
+}
+@keyframes lds-roller {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
   @media screen and (max-width: 760px) {
     .register {
       background-image: url('../assets/image/background-formmobile.jpg');
@@ -234,6 +371,9 @@ export default {
       margin: 10px 0px 20px;
       width: 60px;
       height: 60px;
+    }
+    .upload-text {
+      font-size: 16px;
     }
     .upload-ava {
       border-radius: 50%;
