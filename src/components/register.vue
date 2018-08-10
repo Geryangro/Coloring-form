@@ -42,13 +42,25 @@
                           plain
                           name="plainInline" />
           </b-form-group>
+          <b-row>
+            <b-col md="6">
+              <P class="text-left">Nama Orang Tua :</P>
+              <b-form-input class="inputText" id="exampleInput1" type="text" v-model="form.parent_name" required>
+              </b-form-input>
+            </b-col>
+            <b-col md="6">
+              <P class="text-left">No Handphone :</P>
+              <b-form-input class="inputText" id="exampleInput1" type="number" v-model="form.parent_phone" required>
+              </b-form-input>
+            </b-col>
+          </b-row>
           <P class="text-left">Email :</P>
           <b-form-input class="inputText" id="exampleInput1" type="text" v-model="form.email" required>
           </b-form-input>
           <P class="text-left">Alamat :</P>
           <b-form-input class="inputText" size="lg" id="exampleInput1" type="text" v-model="form.address" required>
           </b-form-input>
-          <b-button class="dftr">
+          <b-button @onclick="submitForm" class="dftr">
             DAFTAR SEKARANG
           </b-button>
          </b-form-group>
@@ -61,6 +73,7 @@
 
 <script>
 import footbar from '@/components/footbar.vue'
+import axios from 'axios'
 
 export default {
   name: 'register',
@@ -77,6 +90,8 @@ export default {
         date: '',
         email: '',
         address: '',
+        parent_name: '',
+        parent_phone: '',
       },
       selected: 'first',
       options: [
@@ -84,6 +99,9 @@ export default {
         { text: '8 - 10 Tahun', value: 'second' }
       ]
     }
+  },
+  created: function(){
+    this.submitForm();
   },
   methods: {
     imageHandler(e) {
@@ -106,6 +124,18 @@ export default {
     },
     pictureClick(target){
       target.$el.children[0].click();
+    },
+    submitForm: function() {
+        var self = this;
+        var form = this.form;
+        axios.post('https://endpoint.lomba.afrakids.com/participant/register',{image:form.image},{name:form.name},{birth_date:form.date},
+        {parent_name:form.parent_name},{parent_email:form.email},{parent_phone:form.parent_phone},{parent_address:form.address})
+        .then(function (response){
+          window.location = '/register'
+        })
+        .catch(function (error){
+           error
+        })
     },
   }
 }
