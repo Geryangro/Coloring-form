@@ -56,7 +56,7 @@
             </b-col>
           </b-row>
           <P class="text-left">Ukuran Baju Anak:</P>
-          <b-form-select  v-model="selected" :options="optionsShirt" class="inputText" id="exampleInput1" />
+          <b-form-select  v-model="form.size" :options="optionsShirt" class="inputText" id="exampleInput1" />
           <P class="text-left">Email :</P>
           <b-form-input class="inputText" id="exampleInput1" type="text" v-model="form.email" required>
           </b-form-input>
@@ -110,7 +110,7 @@ export default {
         parent_name: '',
         parent_phone: '',
         category: '',
-        size: '',
+        size: null,
       },
       showModal: false,
       submit: false,
@@ -120,11 +120,12 @@ export default {
         { text: '8 - 10 Tahun', value: 'second' }
       ],
       optionsShirt: [
-        { value: null, text: 'XS' },
-        { value: 'a', text: 'S' },
-        { value: 'b', text: 'M' },
-        { value: 'c', text: 'L' },
-        { value: 'd', text: 'XL' }
+        { value: null, text: 'Pilih Ukuran Kaos' },
+        { value: 'XS', text: 'XS' },
+        { value: 'S', text: 'S' },
+        { value: 'M', text: 'M' },
+        { value: 'L', text: 'L' },
+        { value: 'XL', text: 'XL' }
       ]
     }
   },
@@ -161,7 +162,7 @@ export default {
         var form = this.form;
         self.showModal = true;
         axios.post('https://endpoint.lomba.afrakids.com/participant/register',{image:form.image, name:form.name, birth_date:form.date,
-        parent_name:form.parent_name, parent_email:form.email, parent_phone:form.parent_phone, parent_address:form.address})
+        parent_name:form.parent_name, parent_email:form.email, parent_phone:form.parent_phone, parent_address:form.address, kaos: form.size})
         .then(function (response){
           window.location = '/transfer'
         })
