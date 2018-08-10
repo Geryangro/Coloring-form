@@ -35,13 +35,11 @@
           <P class="text-left">Tanggal Lahir Anak :</P>
           <b-form-input class="inputText" id="exampleInput1" type="date" v-model="form.date" required>
           </b-form-input>
-          <P class="text-left">Kategori :</P>
-          <b-form-group class="text-left">
-            <b-form-radio-group v-model="selected"
-                          :options="options"
-                          plain
-                          name="plainInline" />
-          </b-form-group>
+          <div v-if="form.category != ''">
+            <P class="text-left">Kategori :</P>
+            <h4 v-if="form.category == 1">Kategori 1 (5 - 7 Tahun)</h4>
+            <h4 v-else-if="form.category == 2">Kategori 2 (8 - 10 Tahun)</h4>
+          </div>
           <b-row>
             <b-col md="6">
               <P class="text-left">Nama Orang Tua :</P>
@@ -91,12 +89,18 @@ export default {
         address: '',
         parent_name: '',
         parent_phone: '',
+        category: '',
       },
       selected: 'first',
       options: [
         { text: '5 - 7 Tahun', value: 'first' },
         { text: '8 - 10 Tahun', value: 'second' }
       ]
+    }
+  },
+  watch: {
+    'form.date': function(val){
+      this.form.category = this.selectCategory(val)
     }
   },
   created: function(){
@@ -135,6 +139,16 @@ export default {
            error
         })
     },
+    selectCategory: function(date){
+      var now = new Date()
+      var birthDate = new Date(date)
+
+      var diffMonth = (now.getFullYear() * 12 + now.getMonth()) - (birthDate.getFullYear() * 12 + birthDate.getMonth())
+      if (diffMonth <= 84)
+          return 1
+      else 
+          return 2     
+    }
   }
 }
 </script>
