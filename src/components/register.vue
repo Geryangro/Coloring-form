@@ -60,7 +60,7 @@
           <P class="text-left">Alamat :</P>
           <b-form-input class="inputText" size="lg" id="exampleInput1" type="text" v-model="form.address" required>
           </b-form-input>
-          <b-button @onclick="submitForm" class="dftr">
+          <b-button v-on:click="submitForm" class="dftr">
             DAFTAR SEKARANG
           </b-button>
          </b-form-group>
@@ -83,7 +83,6 @@ export default {
   data () {
     return {
       file: null,
-      msg: 'Welcome to Your Vue.js App',
       form: {
         image: '',
         name: '',
@@ -101,7 +100,7 @@ export default {
     }
   },
   created: function(){
-    this.submitForm();
+    
   },
   methods: {
     imageHandler(e) {
@@ -114,10 +113,7 @@ export default {
         var reader = new FileReader();
         var vm = this;
         reader.onload = (e) => {
-          console.log("reader")
-          console.log(e.target.result)
             vm.$set(vm.form, 'image', e.target.result);
-            console.log(vm.form.image);
         };
         reader.readAsDataURL(file);
 
@@ -126,12 +122,14 @@ export default {
       target.$el.children[0].click();
     },
     submitForm: function() {
+      console.log('test')
         var self = this;
         var form = this.form;
-        axios.post('https://endpoint.lomba.afrakids.com/participant/register',{image:form.image},{name:form.name},{birth_date:form.date},
-        {parent_name:form.parent_name},{parent_email:form.email},{parent_phone:form.parent_phone},{parent_address:form.address})
+        console.log(form);
+        axios.post('https://endpoint.lomba.afrakids.com/participant/register',{image:form.image, name:form.name, birth_date:form.date,
+        parent_name:form.parent_name, parent_email:form.email, parent_phone:form.parent_phone, parent_address:form.address})
         .then(function (response){
-          window.location = '/register'
+          window.location = '/transfer'
         })
         .catch(function (error){
            error
