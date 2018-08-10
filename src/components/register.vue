@@ -55,6 +55,8 @@
               </b-form-input>
             </b-col>
           </b-row>
+          <P class="text-left">Ukuran Baju Anak:</P>
+          <b-form-select  v-model="selected" :options="optionsShirt" class="inputText" id="exampleInput1" />
           <P class="text-left">Email :</P>
           <b-form-input class="inputText" id="exampleInput1" type="text" v-model="form.email" required>
           </b-form-input>
@@ -108,6 +110,7 @@ export default {
         parent_name: '',
         parent_phone: '',
         category: '',
+        size: '',
       },
       showModal: false,
       submit: false,
@@ -115,6 +118,13 @@ export default {
       options: [
         { text: '5 - 7 Tahun', value: 'first' },
         { text: '8 - 10 Tahun', value: 'second' }
+      ],
+      optionsShirt: [
+        { value: null, text: 'XS' },
+        { value: 'a', text: 'S' },
+        { value: 'b', text: 'M' },
+        { value: 'c', text: 'L' },
+        { value: 'd', text: 'XL' }
       ]
     }
   },
