@@ -25,6 +25,12 @@ export default {
   font-weight: normal;
   font-style: normal;
 }
+.green {
+  color: #63C4B6;
+}
+.blue {
+  color: #D23D70;
+}
 .nopadding {
   padding: 0px !important;
 }

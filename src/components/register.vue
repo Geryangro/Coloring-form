@@ -37,8 +37,8 @@
           </b-form-input>
           <div v-if="form.category != ''">
             <P class="text-left">Kategori :</P>
-            <h4 v-if="form.category == 1">Kategori 1 (5 - 7 Tahun)</h4>
-            <h4 v-else-if="form.category == 2">Kategori 2 (8 - 10 Tahun)</h4>
+            <h4 class="text-left" v-if="form.category == 1">Kategori 1 <span class="green">(5 - 7 Tahun)</span></h4>
+            <h4 class="text-left" v-else-if="form.category == 2">Kategori 2 <span class="blue">(8 - 10 Tahun)</span></h4>
           </div>
           <b-row>
             <b-col md="6">
@@ -213,12 +213,13 @@ export default {
   }
   @media screen and (max-width: 760px) {
     .register {
-      background-image: url('../assets/image/background_form.jpg');
+      background-image: url('../assets/image/background-formmobile.jpg');
       background-size: 100% 100%;
-      height: 300px;
+      height: 350px;
       padding: 20px;
     }
     h2 {
+      margin-top: 20px;
       font-size: 18px;
     }
     .circle {
