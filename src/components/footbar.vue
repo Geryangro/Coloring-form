@@ -1,6 +1,7 @@
 <template>
   <div id="footbar">
-    <p>© 2014 - 2018 PT. Afra Insan Amanah. All Right Reserved.</p>
+    <p v-if="$resize && $mq.above(992)">© 2014 - 2018 PT. Afra Insan Amanah. All Right Reserved.</p>
+    <p v-else>© 2018 PT. Afra Insan Amanah. All Right Reserved.</p>
   </div>
 </template>
 

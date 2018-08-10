@@ -9,7 +9,7 @@
             <youtube :video-id="videoId" player-width="800" player-height="400" :player-vars="{autoplay: 0}"></youtube>
         </div>
         <div class="vid-mob" v-else>
-            <youtube :video-id="videoId" player-width="300" player-height="200" :player-vars="{autoplay: 0}"></youtube>
+            <youtube :video-id="videoId" player-width="280" player-height="200" :player-vars="{autoplay: 0}"></youtube>
         </div>
         <a href="/register">
             <b-button class="dftr">
@@ -83,5 +83,47 @@ export default {
     margin-top: 110px;
     border-radius: 15px;
     font-weight: 800;
+}
+@media screen and (max-width:760px) {
+    .home {
+        background-image: url('../assets/mobile/banner1.jpg');
+        background-size: 100% 100%;
+        height: 400px;
+        padding: 20px;
+    }
+    .waktu {
+        background-image: url('../assets/mobile/banner2.jpg');
+        background-size: 100% 100%;
+        height: 350px;
+        padding: 20px;
+    }
+    .hadiah {
+        background-image: url('../assets/mobile/banner3.png');
+        background-size: 100% 100%;
+        height: 450px;
+        padding: 20px;
+    }
+    .pendaftaraan {
+        background-image: url('../assets/mobile/banner4.png');
+        background-size: 100% 100%;
+        height: 440px;
+        padding: 20px;
+        margin-top: -20px;
+    }
+    .video {
+        background-image: url('../assets/mobile/banner5.png');
+        background-size: 100% 100%;
+        height: 410px;
+        padding: 20px;
+        margin-top: -50px;
+    }
+    .vid-mob {
+        margin-top: 100px;
+    }
+    .dftr {
+        width: 100%;
+        margin-top: 10px;
+        font-size: 16px;
+    }
 }
 </style>

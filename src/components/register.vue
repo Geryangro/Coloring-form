@@ -197,4 +197,38 @@ export default {
     margin-top: 20px;
     border-radius: 15px;
   }
+  @media screen and (max-width: 760px) {
+    .register {
+      background-image: url('../assets/image/background_form.jpg');
+      background-size: 100% 100%;
+      height: 300px;
+      padding: 20px;
+    }
+    h2 {
+      font-size: 18px;
+    }
+    .circle {
+      border: 4px dashed #888;
+      border-radius: 50%;
+      margin: 10px auto;
+      padding: 10px;
+      width: 160px;
+      height: 160px;
+    }
+    .upload {
+      margin: 10px 0px 20px;
+      width: 60px;
+      height: 60px;
+    }
+    .upload-ava {
+      border-radius: 50%;
+      width: 130px;
+      height: 130px;
+    }
+    .dftr {
+        width: 100%;
+        margin-top: 10px;
+        font-size: 16px;
+    }
+  }
 </style>
