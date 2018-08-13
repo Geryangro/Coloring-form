@@ -70,12 +70,16 @@
             </b-row>
         </b-col>
     </b-row>
-    <a href="https://api.whatsapp.com/send?phone=6285771889836&text=Assalamulaikum%2C%20saya%20sudah%20bayar%20pendaftaraan%20lomba%20mewarnai%20afrakids%20%E2%98%BA">
+    <a href="https://api.whatsapp.com/send?phone=6283873872707&text=Assalamulaikum%2C%20saya%20sudah%20bayar%20pendaftaraan%20lomba%20mewarnai%20afrakids%20%E2%98%BA">
         <b-button  class="dftr">
             KONFIRMASI PEMBAYARAN
         </b-button>
     </a>
     <p class="email">*Lihat email pemberitahuan bisa di kotak masuk/spam</p>
+    <p class="bold" style="margin-top: 10px;" v-if="$resize && $mq.above(992)">Catatan: diharuskan membawa akte kelahiran anak <br> 
+    saat registrasi ulang di botani square, untuk verifikasi usia anak</p>
+    <p class="bold" style="margin-top: 10px; font-size: 14px;" v-else>Catatan: diharuskan membawa akte kelahiran anak
+    saat registrasi ulang di botani square, untuk verifikasi usia anak</p>
   </b-col>
 </template>
 
@@ -143,7 +147,7 @@ img.bank {
         padding: 20px 30px 120px;
         background-image: url('../assets/image/konfirmasi-pembayaran.jpg');
         background-size: 100% 100%;
-        height: 1200px;
+        height: 1300px;
     }
     .trans {
         margin-top: 70px;
