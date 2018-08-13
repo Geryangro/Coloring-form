@@ -1,7 +1,7 @@
 <template>
   <b-col md="12" id="transfer">
     <div class="trans" v-if="$resize && $mq.above(992)">
-        <p>Assalamualikum wr.wb</p>
+        <p class="bold">Assalamualaikum wr.wb</p>
         <p>Terima kasih, data anak Ayah Bunda sudah kami terima. <br> 
         Silahkan transfer Biaya Pendaftaran ke nomor rekening <br>
         PT Afra Insan Amanah berikut.
@@ -9,7 +9,7 @@
         <p>Lakukan Pembayaran Sebesar :</p>
     </div>
     <div class="trans" v-else>
-        <p>Assalamualikum wr.wb</p>
+        <p class="bold">Assalamualaikum wr.wb</p>
         <p>Terima kasih, data anak <br> Ayah Bunda sudah kami terima. <br> 
         Silahkan transfer Biaya <br> Pendaftaran ke nomor rekening <br>
         PT Afra Insan Amanah berikut.
@@ -75,7 +75,7 @@
             KONFIRMASI PEMBAYARAN
         </b-button>
     </a>
-    
+    <p class="email">*Lihat email pemberitahuan bisa di kotak masuk/spam</p>
   </b-col>
 </template>
 
@@ -133,12 +133,20 @@ img.bank {
     margin-top: 20px;
     border-radius: 15px;
 }
+.email {
+    font-size: 12px;
+    color: #E21759;
+    margin-top: 10px;
+}
 @media screen and (max-width:760px) {
     #transfer {
         padding: 20px 30px 120px;
         background-image: url('../assets/image/konfirmasi-pembayaran.jpg');
         background-size: 100% 100%;
         height: 1200px;
+    }
+    .trans {
+        margin-top: 70px;
     }
     .trans p {
         font-size: 16px;
@@ -154,7 +162,7 @@ img.bank {
     }
     .dftr {
         width: 100%;
-        margin-top: 10px;
+        margin-top: 20px;
         font-size: 16px;
     }
 }
