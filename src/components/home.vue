@@ -1,6 +1,41 @@
 <template>
   <div id="home">
-    <b-col md="12" class="home"></b-col>
+    <b-carousel v-if="$resize && $mq.above(992)" id="carousel1"
+                style="text-shadow: 1px 1px 2px #333;"
+                controls
+                indicators
+                background="#ababab"
+                :interval="4000"
+                img-width="1024"
+                img-height="601"
+                v-model="slide"
+                @sliding-start="onSlideStart"
+                @sliding-end="onSlideEnd">
+        <b-carousel-slide class="img-fluid" :img-src="require('../assets/image/slider3.jpg')">
+        </b-carousel-slide>
+        <b-carousel-slide class="img-fluid" :img-src="require('../assets/image/slider1.jpg')">
+        </b-carousel-slide>
+        <b-carousel-slide class="img-fluid" :img-src="require('../assets/image/slider2.jpg')">
+        </b-carousel-slide>
+    </b-carousel>
+    <b-carousel v-else id="carousel1"
+                style="text-shadow: 1px 1px 2px #333;"
+                controls
+                indicators
+                background="#ababab"
+                :interval="4000"
+                img-width="480"
+                img-height="480"
+                v-model="slide"
+                @sliding-start="onSlideStart"
+                @sliding-end="onSlideEnd">
+        <b-carousel-slide class="img-fluid" :img-src="require('../assets/mobile/slider1.jpg')">
+        </b-carousel-slide>
+        <b-carousel-slide class="img-fluid" :img-src="require('../assets/mobile/slider2.jpg')">
+        </b-carousel-slide>
+        <b-carousel-slide class="img-fluid" :img-src="require('../assets/mobile/slider3.jpg')">
+        </b-carousel-slide>
+    </b-carousel>
     <b-col md="12" class="waktu"></b-col>
     <b-col md="12" class="hadiah"></b-col>
     <b-col md="12" class="pendaftaraan"></b-col>
@@ -31,19 +66,23 @@ export default {
   },
   data () {
       return {
-          videoId: 'sYNbTMDl8Cg',
+            videoId: 'sYNbTMDl8Cg',
+            slide: 0,
+            sliding: null
       }
+  },
+  methods: {
+    onSlideStart (slide) {
+      this.sliding = true
+    },
+    onSlideEnd (slide) {
+      this.sliding = false
+    }
   }
 }
 </script>
 
 <style scoped>
-.home {
-    background-image: url('../assets/image/home.jpg');
-    background-size: 100% 100%;
-    height: 660px;
-    padding: 20px;
-}
 .waktu {
     background-image: url('../assets/image/waktu.jpg');
     background-size: 100% 100%;
@@ -85,12 +124,6 @@ export default {
     font-weight: 800;
 }
 @media screen and (max-width:760px) {
-    .home {
-        background-image: url('../assets/mobile/banner1.jpg');
-        background-size: 100% 100%;
-        height: 400px;
-        padding: 20px;
-    }
     .waktu {
         background-image: url('../assets/mobile/banner2.jpg');
         background-size: 100% 100%;
