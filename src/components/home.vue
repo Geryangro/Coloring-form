@@ -15,7 +15,7 @@
         </b-carousel-slide>
         <b-carousel-slide class="img-fluid" :img-src="require('../assets/image/slider1.jpg')">
         </b-carousel-slide>
-        <b-carousel-slide class="img-fluid" :img-src="require('../assets/image/slider2.jpg')">
+        <b-carousel-slide class="img-fluid" :img-src="require('../assets/image/slide22.jpg')">
         </b-carousel-slide>
     </b-carousel>
     <b-carousel v-else id="carousel1"
