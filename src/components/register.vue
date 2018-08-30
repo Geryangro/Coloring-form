@@ -174,8 +174,9 @@ export default {
       var now = new Date()
       var birthDate = new Date(date)
 
+     
       var diffMonth = (now.getFullYear() * 12 + now.getMonth()) - (birthDate.getFullYear() * 12 + birthDate.getMonth())
-      if (diffMonth <= 84)
+      if (diffMonth <= 96)
           return 1
       else 
           return 2     
